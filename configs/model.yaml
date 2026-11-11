@@ -1,0 +1,7 @@
+model_name_or_path: Qwen/Qwen3-1.7B
+revision: main  # Pin a commit hash before experiments.
+seed: 42
+torch_dtype: bfloat16
+enable_thinking: false
+finetuning: full  # Memory feasibility must be profiled; adapters are optional.
+gradient_checkpointing: true
