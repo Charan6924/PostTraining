@@ -1,0 +1,6 @@
+algorithm: dpo
+model_config: configs/model.yaml
+preferences_path: data/preferences/train.jsonl
+output_dir: runs/dpo
+seed: 42
+# TODO: Set optimizer, batch size, token limits, beta, and training budget.
