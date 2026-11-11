@@ -106,6 +106,25 @@ Public benchmarks may overlap with the model's pretraining or earlier post-train
 - Profile each algorithm before choosing full-parameter training, optimizer/offloading options, sequence lengths, and batch sizes. Full-parameter training is not assumed to fit with a conventional optimizer.
 - Use a consistent Qwen3 thinking-mode setting. Non-thinking mode is a practical starting choice for shorter generations; decide and record the setting before running experiments.
 
+## Dependency setup
+
+The project uses Python 3.13 and uv. Install the locked base environment and development tools:
+
+```sh
+uv sync --locked
+```
+
+Optional packages are available separately:
+
+```sh
+uv sync --locked --extra tracking  # Weights & Biases and TensorBoard
+uv sync --locked --extra memory    # PEFT adapters and bitsandbytes optimizers/quantization
+```
+
+The base environment includes PyTorch, Transformers, Accelerate, Datasets, math-verification tools, configuration utilities, and resource monitoring. TRL is pinned to 0.23.1 to retain DPO, GRPO, and PPO in one version, with Transformers constrained to the 4.56 series. Use that version's APIs when implementing trainers. Its PPO trainer expects a reward-model interface, so using our correctness checker requires an integration layer or custom rollout/training code; installing dependencies alone does not implement that integration.
+
+`uv.lock` records the resolved environment. Dependency resolution has been checked; CUDA execution, trainer imports, and training memory requirements still need installation and runtime verification. FlashAttention, vLLM, and DeepSpeed are deferred until a measured need justifies their additional CUDA and version constraints.
+
 ## Results
 
 No training or evaluation has been run yet.
