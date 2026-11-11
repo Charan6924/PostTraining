@@ -1,0 +1,13 @@
+model_config: configs/model.yaml
+benchmarks:
+  - name: gsm8k
+    dataset: openai/gsm8k
+    configuration: main
+    split: test
+  - name: math500
+    dataset: HuggingFaceH4/MATH-500
+    split: test
+responses_per_question: 1
+output_dir: runs/baseline
+seed: 42
+# TODO: Fix decoding settings and token limits before comparing checkpoints.
