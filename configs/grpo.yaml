@@ -1,0 +1,8 @@
+algorithm: grpo
+model_config: configs/model.yaml
+split_manifest: data/splits/gsm8k.json
+output_dir: runs/grpo
+reward: final_answer_correctness
+num_generations: 4
+seed: 42
+# TODO: Set optimizer, batch size, token limits, KL settings, and training budget.
