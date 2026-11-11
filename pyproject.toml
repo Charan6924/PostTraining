@@ -1,0 +1,41 @@
+[project]
+name = "posttraining"
+version = "0.1.0"
+description = "Compare DPO, GRPO, and PPO on Qwen3-1.7B"
+readme = "README.md"
+authors = [
+    { name = "Charan6924", email = "altmrcharbot@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "torch>=2.6,<3",
+    "transformers>=4.56.1,<4.57",
+    "trl==0.23.1",
+    "accelerate>=1.4,<2",
+    "datasets>=3,<5",
+    "huggingface-hub>=0.34,<1",
+    "safetensors>=0.5,<1",
+    "numpy>=1.26,<3",
+    "pandas>=2.2,<3",
+    "pyyaml>=6,<7",
+    "tqdm>=4.66,<5",
+    "rich>=13,<15",
+    "math-verify>=0.8,<0.9",
+    "sympy>=1.13,<2",
+    "psutil>=6,<8",
+    "nvidia-ml-py>=12",
+]
+
+[project.optional-dependencies]
+memory = ["peft>=0.17,<0.18", "bitsandbytes>=0.47,<0.49"]
+tracking = ["wandb>=0.21,<1", "tensorboard>=2.19,<3"]
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "ruff>=0.12,<1"]
+
+[project.scripts]
+posttraining = "posttraining:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
