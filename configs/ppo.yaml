@@ -1,0 +1,8 @@
+algorithm: ppo
+model_config: configs/model.yaml
+split_manifest: data/splits/gsm8k.json
+output_dir: runs/ppo
+reward: final_answer_correctness
+seed: 42
+# TODO: Configure value estimator, correctness-reward integration, optimizer,
+# rollout/minibatch sizes, token limits, KL settings, and training budget.
