@@ -125,6 +125,38 @@ The base environment includes PyTorch, Transformers, Accelerate, Datasets, math-
 
 `uv.lock` records the resolved environment. Dependency resolution has been checked; CUDA execution, trainer imports, and training memory requirements still need installation and runtime verification. FlashAttention, vLLM, and DeepSpeed are deferred until a measured need justifies their additional CUDA and version constraints.
 
+## Repository layout
+
+```text
+configs/                 Model, DPO, GRPO, PPO, and evaluation YAML templates
+src/posttraining/
+  models.py              Shared model/tokenizer loading
+  cli.py                 Skeleton command argument handling
+  data/                  GSM8K splits, DPO preferences, benchmark loading
+  rewards/               Answer extraction and binary correctness rewards
+  training/              Separate DPO, GRPO, and PPO integrations
+  evaluation/            Response generation, scoring, and metrics
+scripts/                 Data preparation, training, evaluation, comparison commands
+tests/                   Test plan; tests added with implementations
+data/                    Local datasets and preferences (Git ignored)
+runs/                    Local checkpoints and metrics (Git ignored)
+```
+
+This is a scaffold: configuration files are templates and algorithm/data functions
+raise `NotImplementedError`. Commands expose help and otherwise exit with a clear
+unimplemented message. No model downloads or training occur yet.
+
+```sh
+uv run python scripts/train_dpo.py --help
+uv run python scripts/train_grpo.py --help
+uv run python scripts/train_ppo.py --help
+uv run python scripts/evaluate.py --help
+```
+
+Use `scripts/prepare_data.py` for split creation, `scripts/generate_preferences.py`
+for DPO data, and `scripts/compare_results.py` for the final comparison once
+implemented. Settle the TODO configuration fields and pin revisions before runs.
+
 ## Results
 
 No training or evaluation has been run yet.
